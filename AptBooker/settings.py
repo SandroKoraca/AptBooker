@@ -83,11 +83,14 @@ WSGI_APPLICATION = 'AptBooker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2cplg3qv8hn8k',
+        'HOST': 'ec2-35-168-122-84.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'funcbsoxhcgwhz',
+        'PASSWORD': 'ddf190b772713d1b269bf7015508325dc40aea6cd6193ac34df63ce027a25e86'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -140,8 +143,6 @@ SITE_ID = 1
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-
-TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     "127.0.0.1",
