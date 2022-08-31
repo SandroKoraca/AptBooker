@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> Prijava  </h1>
+</div>
+
+<div class="flex items-center justify-center m-20">
+    <div>
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button style="margin-top: 2rem;" class="primaryAction text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-6" type="submit">Prijavite se</button>
+        </form>
+        <p style="margin-top: 2rem;">Ako još niste kreirali račun, molimo
+        <a class="text-blue-500 linkovi" href="{{ signup_url }}">kreirajte profil</a>.</p>
+    </div>
+</div>
+{% endblock %}
+

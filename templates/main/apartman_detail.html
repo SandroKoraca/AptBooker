@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> {{ apartman.apartman_naziv }} </h1>
+</div>
+<div class="flex items-center justify-between p-6">
+    {% if request.user.is_superuser %}
+        {% if apartman.apartman_odobren == False %}
+            <button class="text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-6"><a href="{{ apartman.id }}/OdobravanjeOdredjenogApartmana">Odobri</a></button>
+        {% endif %}
+    {% endif %}
+    {% if user.is_authenticated %}
+        {% if user.username == apartman.apartman_vlasnik %}
+        <div class="text-right">
+            <button class="text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-6"><a href="/apartmani/{{ apartman.id }}/Uredi">Uredi</a></button>
+            <button class="border border-blue-900 py-2 px-4"><a href="/apartmani/{{ apartman.id }}/Obrisi">Obriši</a></button>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% if apartman.apartman_odobren == False %}
+    <p class="ml-6 mb-6" style="color: red;">Apartman je neobjavljen!</p>
+{% endif %}
+<div style="margin-left: 1.5rem;" class="flex items-center">
+    <div>
+        <a href="/media/{{apartman.apartman_glavna_slika}}">
+            <img style="width: 900px; height: 500px;" src="/media/{{apartman.apartman_glavna_slika}}">
+        </a>
+    </div>
+    <div class="p-6" style="width: 50rem;">
+        <h5 class="text-xl" style="padding-bottom: 2rem;"><strong>Cijena:</strong> {{ apartman.apartman_cijena }} kn / noć</h5>
+        <p><strong>Lokacija:</strong> {{ apartman.apartman_lokacija }}</p>
+        <p style="padding-bottom: 1rem; padding-top: 1rem;"><strong>Broj smještaja:</strong> {{ apartman.apartman_smjestaji }}</p>
+        <p style="padding-bottom: 2rem;"><strong>Vlasnik apartmana:</strong> {{ apartman.apartman_vlasnik }}</p>
+        <p><strong>Sadržaj:</strong><br>{{ apartman.apartman_sadrzaj }}</p>
+    </div>
+</div>
+<button class="text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-6"><a href="/apartmani/{{ apartman.id }}/NapisiRecenziju">Napišite recenziju</a></button>
+<button class="text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-6"><a href="/apartmani/{{ apartman.id }}/Recenzije">Sve</a></button>
+<div class="content">
+    {% block content_recenzije %}
+    {% endblock %}
+</div>
+{% endblock %}

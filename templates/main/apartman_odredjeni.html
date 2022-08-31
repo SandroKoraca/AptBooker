@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> {{ apartman.apartman_naziv }} </h1>
+</div>
+<div class="flex items-center justify-between ml-6">
+    {% if request.user.is_superuser %}
+        {% if apartman.apartman_odobren == False %}
+            <button class=" bg-blue-500 border border-blue-900 py-2 px-4 mr-6"><a class="linkovi text-white" href="{{ apartman.id }}/OdobravanjeOdredjenogApartmana">Odobri</a></button>
+        {% endif %}
+    {% endif %}
+    {% if user.username == apartman.apartman_vlasnik %}
+    <div class="text-right">
+        <button class="bg-blue-500 border border-blue-900 py-2 px-4 pr-6 linkovi mr-5"><a class="linkovi text-white" href="/apartmani/{{ apartman.id }}/Uredi">Uredi</a></button>
+        <button class="border bg-white border-black py-2 px-4 mr-6"><a class="linkovi" href="/apartmani/{{ apartman.id }}/Obrisi">Obriši</a></button>
+    </div>
+    {% endif %}
+</div>
+{% if apartman.apartman_odobren == False %}
+<div>
+    <p class="ml-6" style="color: red;">Apartman je neobjavljen!</p>
+</div>
+{% endif %}
+<div class="flex items-center ml-6 mr-6 mt-5">
+    <div>
+        <a href="/media/{{apartman.apartman_glavna_slika}}">
+            <img style="width: 900px; height: 500px;" src="/media/{{apartman.apartman_glavna_slika}}">
+        </a>
+    </div>
+    <div class="p-6" style="width: 50rem;">
+        <h5 class="text-xl" style="padding-bottom: 2rem;"><strong>Cijena:</strong> {{ apartman.apartman_cijena }} kn / noć</h5>
+        <p><strong>Lokacija:</strong> {{ apartman.apartman_lokacija }}</p>
+        <p style="padding-bottom: 1rem; padding-top: 1rem;"><strong>Broj smještaja:</strong> {{ apartman.apartman_smjestaji }}</p>
+        <p style="padding-bottom: 2rem;"><strong>Vlasnik apartmana:</strong> {{ apartman.apartman_vlasnik }}</p>
+        <p><strong>Sadržaj:</strong><br>{{ apartman.apartman_sadrzaj }}</p>
+    </div>
+</div>
+{% if user.is_authenticated %}
+    {% if apartman.apartman_vlasnik != user.username %}
+    <button class="bg-blue-500 border border-blue-900 py-2 px-4 ml-6"><a class="linkovi text-white" href="/apartmani/{{ apartman.id }}/NapisiRecenziju">Napišite recenziju</a></button>
+    {% endif %}
+{% endif %} 
+<div class="ml-6 mr-6">
+    {% for recenzija in recenzije %}
+        <p style="margin-top: 1rem;"><strong>Korisnik:</strong> {{recenzija.autor}}</p>
+        <p><strong>Ocjena:</strong> {{recenzija.ocjena}}</p>
+        <p style="margin-top: 1rem; margin-bottom: 1rem;">{{recenzija.sadrzaj}}</p>
+        <hr style="color: gray;">
+{% endfor %}
+</div>
+{% endblock %}
+

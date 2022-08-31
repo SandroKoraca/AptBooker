@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> Napišite recenziju </h1>
+</div>
+
+<form action="" method="POST" class="ml-6">
+    {% csrf_token %}
+    <div id="div_id_autor" class="form-group" style="display: none;">
+        <label for="id_autor" class="requiredField"> Autor<span class="asteriskField">*</span> </label>
+        <div><input type="text" name="autor" maxlength="80" class="textinput inputtext form-control" required id="autor" value="{{request.user.username}}"/></div>
+    </div>
+    <div id="div_id_apartman" class="form-group" style="display: none;">
+        <label for="apartman" class="requiredField"> Apartman<span class="asteriskField">*</span> </label>
+        <div><input type="text" name="apartman" maxlength="80" class="textinput inputtext form-control" required id="apartman" value="{{pk}}"/></div>
+    </div>
+    <div>
+        {{ form.ocjena|as_crispy_field }}
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.sadrzaj|as_crispy_field }}
+    </div>
+    <p><input type="submit" name="Potvrdi" value="Potvrdi" class="text-white bg-blue-500 border border-blue-900 py-2 px-4" style="margin-top: 2rem;"></p>
+</form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> Dodavanje apartmana </h1>
+</div>
+
+<form action="" method="POST" class="ml-6">
+    {% csrf_token %}
+    {{ form.apartman_naziv|as_crispy_field }}
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_cijena|as_crispy_field }}
+    </div>
+    <div id="div_id_apartman_vlasnik" class="form-group" style="display: none;">
+        <label for="id_apartman_vlasnik" class="requiredField"> Vlasnik<span class="asteriskField">*</span> </label>
+        <div><input type="text" name="apartman_vlasnik" maxlength="80" class="textinput inputtext form-control" required id="id_apartman_vlasnik" value="{{request.user.username}}"/></div>
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_smjestaji|as_crispy_field }}
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_lokacija|as_crispy_field }}
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_sadrzaj|as_crispy_field }}
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_glavna_slika|as_crispy_field }}
+    </div>
+    <p><input type="submit" name="Potvrdi" value="Potvrdi" class="text-white bg-blue-500 border border-blue-900 py-2 px-4" style="margin-top: 2rem;"></p>
+</form>
+{% endblock %}

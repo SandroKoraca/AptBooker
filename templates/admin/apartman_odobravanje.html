@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> Odobravanje apartmana </h1>
+</div>
+<form action="" method="POST" class="ml-6">
+    {% csrf_token %}
+    <div style="display: none;">
+        {{ form.apartman_naziv|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_cijena|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_vlasnik|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_smjestaji|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_lokacija|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_sadrzaj|as_crispy_field }}
+    </div>
+    <div style="display: none;">
+        {{ form.apartman_glavna_slika|as_crispy_field }}
+    </div>
+    <div style="margin-top: 1rem;">
+        {{ form.apartman_odobren|as_crispy_field }}
+    </div>
+    <div class="flex items-center" style="margin-top: 1rem;">
+        <p><input type="submit" name="Potvrdi" value="Potvrdi" class="text-white bg-blue-500 border border-blue-900 py-2 px-4"></p>
+        <button class="border bg-white border-blue-900 py-2 px-4 ml-5"><a class="linkovi" href="/apartmani/{{ pk }}/Obrisi">Obriši</a></button>
+    </div>
+</form>
+{% endblock %}

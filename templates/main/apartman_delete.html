@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="bg-blue-900">
+    <h1 class="text-5xl text-white p-6 text-center"> Brisanje albuma  </h1>
+</div>
+<div class="ml-6">
+    <p class="text-2xl">Jeste li sigurni da želite obrisati "{{ apartman.apartman_naziv }}"?</p>
+    <form action="" method="POST" style="margin-top: 1rem;">
+        {% csrf_token %}
+        <input type="submit" name="Potvrdi" value="Potvrdi" class="text-white bg-blue-500 border border-blue-900 py-2 px-4 mr-5">
+        <button class="border bg-white border-blue-900 py-2 px-4"><a class="linkovi" href="/apartmani/{{ apartman.id }}" >Odustani</a></button>
+    </form>
+</div>
+{% endblock %}

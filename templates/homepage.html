@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="relative bg-gray-900">
+    <img class="w-full opacity-75 object-cover" src="/media/rovinj.jpg" style="height: 35rem;">
+    <h1 class="absolute p-6 text-white text-6xl text_slika">AptBooker</h1>
+</div>
+<div style="margin-left: 7rem; margin-right: 7rem; margin-top: 3rem; margin-bottom: 3rem;" class="flex items-center justify-between">
+{% for apartman in random_apartmani %}
+    <a class="linkovi" href="/apartmani/{{ apartman.id }}">    
+        <div class="border border-black rounded-2xl" style="width: 352px;">
+            <div>
+                <img style="width: 352px; height: 200px; border-top-left-radius: 1rem; border-top-right-radius: 1rem;" src="/media/{{apartman.apartman_glavna_slika}}">
+            </div>
+            <div class=" flex justify-center" style="margin-top: 0;">
+                <div>
+                    <h4 style="padding-bottom: 1rem;" class="text-4xl text-blue-900 font-bold">{{ apartman.apartman_naziv }}</h4>
+                    <h5 style="padding-bottom: 0;" class="text-xl">Cijena: {{ apartman.apartman_cijena }} kn / noć</h5>
+                    <p style="padding-bottom: 0.5rem;" class="text-xl">Lokacija: {{ apartman.apartman_lokacija }}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+</div>
+{% endblock %}
