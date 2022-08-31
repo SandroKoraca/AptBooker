@@ -2,7 +2,6 @@ arrow==1.2.2
 asgiref==3.5.2
 attr==0.3.2
 attrs==22.1.0
-backports.zoneinfo==0.2.1
 binaryornot==0.4.4
 certifi==2022.6.15
 cffi==1.15.1
