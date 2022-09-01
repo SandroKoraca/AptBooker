@@ -12,7 +12,7 @@ class Apartman(models.Model):
     apartman_lokacija = models.CharField(max_length=100)
     apartman_odobren = models.BooleanField(default=False)
     apartman_sadrzaj = models.TextField()
-    apartman_glavna_slika = models.ImageField(upload_to=image_path, blank=True, null=True)
+    apartman_glavna_slika = models.ImageField(upload_to="", blank=True, null=True)
 
 class Recenzija(models.Model):
     autor = models.CharField(max_length=100)
